@@ -41,7 +41,22 @@ public class PlayerTest {
 
         Player player = new Player(handCards, startingTableauCard);
 
-        Assertions.assertThat(player.getTableauCards()).hasSize(1);
-        Assertions.assertThat(player.getTableauCards().get(0)).isEqualTo(startingTableauCard);
+        Assertions.assertThat(player.getPaletteCards()).hasSize(1);
+        Assertions.assertThat(player.getPaletteCards().get(0)).isEqualTo(startingTableauCard);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorDealsCardsCorrectly() {
+        List<Card> handCards = newArrayList(
+                new Card(CardColor.GREEN, 1),
+                new Card(CardColor.GREEN, 2),
+                new Card(CardColor.GREEN, 3),
+                new Card(CardColor.GREEN, 4),
+                new Card(CardColor.GREEN, 5),
+                new Card(CardColor.GREEN, 6)
+        );
+        Card startingPaletteCard = new Card(CardColor.INDIGO, 5);
+
+        new Player(handCards, startingPaletteCard);
     }
 }
